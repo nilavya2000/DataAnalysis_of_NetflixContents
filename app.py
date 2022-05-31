@@ -30,7 +30,15 @@ netflix_movie = data[data['type']=="Movie"]
 
 
 class analyze:
-   
+   """ This contains analyze of data with different features of Netflix movies and Tv Shows 
+   1. analyze_months_and_shows(self,data):- analyzed movie release date yearly and month wise. data=dataset  
+   2. rating(df):- Visulized the type of rating and the amount of rating of the data. 
+   3. release_year_yearly(df):- amount of movies and shows release yearwise. 
+   4. country_analysis(df, graph=True):- Analyzed the countrywise release of movies and shows. 
+   5. duration_analysis_movies(df):- Analyzed the duration of movies in Netflix. 
+   6. duration_analysis_shows(df):- Analyzed the duration of TV Shows in Netflix. 
+   7. generes_analysis(df):- WordCloud for Genres¶
+   """
   
    def __init__(self):
       pass
@@ -54,6 +62,7 @@ class analyze:
       month_order=['January', 'February', 'March', 'April','May','June','July','August','September','October','November','December'][::-1]
       df = netflix_date.groupby('year')['month'].value_counts().unstack().fillna(0)[month_order].T
       self.show_graph(df)
+
    def rating(df):
       plt.figure(figsize=(12,10))
       ax=sns.countplot(x='rating', data=df, order=df['rating'].value_counts().index[0:len(df['rating'].unique())])
